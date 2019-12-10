@@ -1,0 +1,65 @@
+swagger: "2.0"
+info:
+  description: "Service to host culinary information for the tizza ecosystem: pizza metadata"
+  version: "0.0.1"
+  title: "culinary-service"
+  contact:
+    email: "team-culinary@tizza.com"
+host: "tizza.com"
+basePath: "/api/v1"
+tags:
+- name: "pizza"
+  description: "Pizza metadata"
+schemes:
+- "https"
+paths:
+  /pizza:
+    post:
+      tags:
+      - "pizza"
+      summary: "Create a new pizza"
+      operationId: "createPizza"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pizza object to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/Pizza"
+      responses:
+        405:
+          description: "Invalid input"
+  /pizza/{id}:
+    get:
+      tags:
+      - "pizza"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        type: "integer"
+      responses:
+        404:
+          description: "Pizza not found"
+definitions:
+  Pizza:
+    type: "object"
+    required:
+    - "name"
+    - "photoUrls"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+        example: "Salami Pikante"
+      description:
+        type: "string"
+        example: "Very spicy pizza with meat"

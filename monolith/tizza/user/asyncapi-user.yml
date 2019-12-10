@@ -1,0 +1,32 @@
+asyncapi: '2.0.0-rc1'
+id: 'urn:com:tizza:culinary-service:server'
+info:
+  title: culinary-service
+  version: '0.0.1'
+  description: |
+    AMQP messages published and consumed by the culinary service
+    
+defaultContentType: application/json
+
+channels:
+  user.deleted.1.0.0:
+    subscribe:
+      message:
+        summary: 'User deleted'
+        description: 'A notification that a certain user has been removed from the system'
+        payload:
+          type: 'object'
+          properties:
+            user_id:
+              type: "string"
+ 
+  pizza.deleted.1.0.0:
+    publish:
+      message:
+        summary: 'Pizza deleted'
+        description: 'A notification that a certain pizza has been removed from the system'
+        payload:
+          type: 'object'
+          properties:
+            pizza_id:
+              type: "string"

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Look at all the pizzas!</h2>
+<table>
+<th>
+    <td>Name</td>
+    <td>Description</td>
+</th>
+{% for pizza in pizzas %}
+<tr>
+    <td>{{ pizza.title }}</td>
+    <td>{{ pizza.description }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
